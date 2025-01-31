@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { CreateTrainingRecordContext } from "./CreateTrainingRecordContext";
 import { TrainingTypeEnum } from "@/backend-layer/_internal/trainingRecord/trainingRecordService";
 import { useAddTrainingRecord } from "@/backend-layer/trainingRecord";
-import { useRouter } from "next/router";
 
 export const useSetCaloriesBurned = (): [number, (value: number) => void] => {
   const context = useContext(CreateTrainingRecordContext);
@@ -90,7 +89,6 @@ export const useSetTrainingType = (): [
 export const useAddTrainingRecordContext = () => {
   const context = useContext(CreateTrainingRecordContext);
   const sendToBackendLayer = useAddTrainingRecord();
-  const router = useRouter();
 
   return () => {
     console.log(
@@ -99,8 +97,6 @@ export const useAddTrainingRecordContext = () => {
     sendToBackendLayer({
       ...context.trainingRecord,
       dateAndTimeOfTheTraining: `${context.trainingRecord.dateOfTheTraining}T${context.trainingRecord.timeOfTheTraining}:00Z`,
-    }).then(() => {
-      router.push("/");
     });
   };
 };

@@ -27,15 +27,8 @@ function returnHelperString(startDate: string, endDate: string) {
   return "";
 }
 
-export const addTrainingRecord = (
-  dto: CreateTrainingRecordDto,
-  startDate: string,
-  endDate: string
-) => {
-  return getAxios().post(
-    `trainingRecord${returnHelperString(startDate, endDate)}`,
-    dto
-  );
+export const addTrainingRecord = (dto: CreateTrainingRecordDto) => {
+  return getAxios().post(`trainingRecord`, dto);
 };
 
 export const getTrainingRecords = (

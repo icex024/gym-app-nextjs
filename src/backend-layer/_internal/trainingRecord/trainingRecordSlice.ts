@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TrainingRecordSliceInterface } from "./TrainingRecordSliceInterface";
 import { applyGetTrainingRecordsAsync } from "./getTrainingRecordsAsync";
-import { applyAddTrainingRecordAsync } from "./addTrainingRecordAsync";
 
 const initialValue: TrainingRecordSliceInterface = {
   records: [],
@@ -32,7 +31,6 @@ const trainingRecordSlice = createSlice({
   },
   extraReducers: (builder) => {
     applyGetTrainingRecordsAsync(builder);
-    applyAddTrainingRecordAsync(builder);
   },
 });
 

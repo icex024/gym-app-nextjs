@@ -1,8 +1,5 @@
-import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  TrainingRecordDto,
-  TrainingRecordSliceInterface,
-} from "./TrainingRecordSliceInterface";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { TrainingRecordDto } from "./TrainingRecordSliceInterface";
 import {
   addTrainingRecord,
   CreateTrainingRecordDto,
@@ -13,21 +10,9 @@ export const addTrainingRecordAsync = createAsyncThunk<
   TrainingRecordDto[],
   { dto: CreateTrainingRecordDto },
   { state: AppState }
->("trainingRecord/addTrainingRecordAsync", async ({ dto }, thunkApi) => {
+>("trainingRecord/addTrainingRecordAsync", async ({ dto }) => {
   console.log(dto);
-  const response = await addTrainingRecord(
-    dto,
-    thunkApi.getState().trainingRecordSlice.startDate,
-    thunkApi.getState().trainingRecordSlice.endDate
-  );
+  const response = await addTrainingRecord(dto);
 
   return response.data;
 });
-
-export const applyAddTrainingRecordAsync = (
-  builder: ActionReducerMapBuilder<TrainingRecordSliceInterface>
-) => {
-  builder.addCase(addTrainingRecordAsync.fulfilled, (state, action) => {
-    state.records = action.payload;
-  });
-};

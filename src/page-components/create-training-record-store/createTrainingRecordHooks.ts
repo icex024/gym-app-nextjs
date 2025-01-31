@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CreateTrainingRecordContext } from "./CreateTrainingRecordContext";
 import { TrainingTypeEnum } from "@/backend-layer/_internal/trainingRecord/trainingRecordService";
 import { useAddTrainingRecord } from "@/backend-layer/trainingRecord";
+import { convertStringToTrainingTypeEnum } from "../training-records/trainingTypeEnumToString";
 
 export const useSetCaloriesBurned = (): [number, (value: number) => void] => {
   const context = useContext(CreateTrainingRecordContext);
@@ -99,23 +100,4 @@ export const useAddTrainingRecordContext = () => {
       dateAndTimeOfTheTraining: `${context.trainingRecord.dateOfTheTraining}T${context.trainingRecord.timeOfTheTraining}:00Z`,
     });
   };
-};
-
-const convertStringToTrainingTypeEnum = (value: string) => {
-  switch (value) {
-    case "Kardio":
-      return TrainingTypeEnum.Cardio;
-    case "Kros fit":
-      return TrainingTypeEnum.CrossFit;
-    case "Full body":
-      return TrainingTypeEnum.FullBody;
-    case "Lower body":
-      return TrainingTypeEnum.LowerBody;
-    case "Upper body":
-      return TrainingTypeEnum.UpperBody;
-    case "Borilacki trening":
-      return TrainingTypeEnum.MartialArts;
-    default:
-      return TrainingTypeEnum.MartialArts;
-  }
 };

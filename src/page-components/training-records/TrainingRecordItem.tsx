@@ -31,7 +31,7 @@ export const TrainingRecordItem = ({
           <TrainingRecordLabel>Tip treninga:</TrainingRecordLabel>&nbsp;
           <TrainingRecordValue>
             {trainingTypeStringDataFromBackToString(
-              Number.parseInt(trainingRecord.trainingType)
+              trainingRecord.trainingType
             )}
           </TrainingRecordValue>
         </div>
